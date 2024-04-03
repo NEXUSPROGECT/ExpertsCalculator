@@ -82,7 +82,6 @@ namespace ExpertsCalculator
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(122, 24);
             this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btnAddRow
             // 
@@ -123,6 +122,7 @@ namespace ExpertsCalculator
             this.button3.TabIndex = 4;
             this.button3.Text = "Вычислить";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnDelCol
             // 

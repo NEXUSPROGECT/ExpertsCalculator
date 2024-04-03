@@ -12,9 +12,13 @@ namespace ExpertsCalculator
 {
     public partial class FormResult : Form
     {
-        public FormResult()
+        String nameMetod;
+        object[,] dataArray;
+        public FormResult(object[,] dataArray, String nameMetod)
         {
             InitializeComponent();
+            this.dataArray = dataArray;
+            this.nameMetod = nameMetod;
         }
     }
 }

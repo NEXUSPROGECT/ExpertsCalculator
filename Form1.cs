@@ -23,21 +23,6 @@ namespace ExpertsCalculator
             AddColumn(dataGridView1);
         }
 
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (comboBox1.SelectedItem.ToString())
-            {
-                case "":
-
-                    return;
-
-
-                default:
-                    return;
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             numTur++;
@@ -68,6 +53,25 @@ namespace ExpertsCalculator
             }
             
             RemoveColumn(dataGridView1);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int rowCount = dataGridView1.Rows.Count;
+            int columnCount = dataGridView1.Columns.Count;
+            object[,] dataArray = new object[rowCount, columnCount];
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                for (int j = 0; j < columnCount; j++)
+                {
+                    dataArray[i, j] = dataGridView1.Rows[i].Cells[j].Value;
+                }
+            }
+
+
+            FormResult formResult = new FormResult(dataArray, comboBox1.SelectedItem.ToString());
+            formResult.Show();
         }
     }
 }
