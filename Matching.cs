@@ -11,27 +11,56 @@ namespace ExpertsCalculator
 {
     internal class Matching
     {
-        static void Main(string[] args)
+        public static void MainCalculate(double[,] matrix, DataGridView dataGridView, double tHold, ZedGraphControl zedGraphControl)
         {
-            double[,] matrix = {
-            {1, 3, 1, 1},
-            {2, 2, 3, 3},
-            {5, 4, 4, 5},
-            {4, 5, 5, 5},
-            {3, 1, 2, 2 }
-        };
+
+            int[,] diGraf = new int[matrix.GetLength(1), matrix.GetLength(1)];
+
+
+            // Очищаем DataGridView перед добавлением новых данных
+            dataGridView.Rows.Clear();
+            dataGridView.Columns.Clear();
+
+            // Добавляем столбцы в DataGridView
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                dataGridView.Columns.Add($"Column{j}", $"Column{j + 1}");
+            }
+
+            // Добавляем строки и устанавливаем значения из матрицы
+            for (int i = 0; i < matrix.GetLength(1); i++)
+            {
+                // Добавляем строку в DataGridView
+                dataGridView.Rows.Add();
+            }
+
+
+
+
+
+
+            
 
             double[,] spearmanMatrix = CalculateSpearman(matrix);
 
-            Console.WriteLine("Spearman's correlation matrix:");
             for (int i = 0; i < spearmanMatrix.GetLength(0); i++)
             {
                 for (int j = 0; j < spearmanMatrix.GetLength(1); j++)
                 {
-                    Console.Write(spearmanMatrix[i, j] + " ");
+                    if (spearmanMatrix[i, j] >= tHold)
+                    {
+                        diGraf[i, j] = 1;
+                        dataGridView.Rows[i].Cells[j].Value = 1;
+                    }
+                    else 
+                    { 
+
+                        diGraf[i, j] = 0;
+                        dataGridView.Rows[i].Cells[j].Value = 0;
+                    }
                 }
-                Console.WriteLine();
             }
+            DisplayGraph.PlotGraph(zedGraphControl, diGraf);
         }
 
         static double[,] CalculateSpearman(double[,] matrix)
