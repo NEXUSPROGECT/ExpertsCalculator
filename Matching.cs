@@ -11,79 +11,87 @@ namespace ExpertsCalculator
 {
     internal class Matching
     {
-        public static void CalculateAndDisplay(DataGridView dataGridView, double[,] opinionMatrix, double threshold, ZedGraphControl zedGraph)
+        static void Main(string[] args)
         {
-            int rowCount = opinionMatrix.GetLength(0);
-            int colCount = opinionMatrix.GetLength(1);
+            double[,] matrix = {
+            {1, 3, 1, 1},
+            {2, 2, 3, 3},
+            {5, 4, 4, 5},
+            {4, 5, 5, 5},
+            {3, 1, 2, 2 }
+        };
 
-            // Очищаем DataGridView от предыдущих данных
-            dataGridView.Rows.Clear();
-            dataGridView.Columns.Clear();
+            double[,] spearmanMatrix = CalculateSpearman(matrix);
 
-            // Добавляем столбцы в DataGridView
-            for (int j = 0; j < colCount; j++)
+            Console.WriteLine("Spearman's correlation matrix:");
+            for (int i = 0; i < spearmanMatrix.GetLength(0); i++)
             {
-                dataGridView.Columns.Add("Column" + j, "Column" + j);
-            }
-
-            // Добавляем строки в DataGridView и заполняем их данными из opinionMatrix
-            for (int i = 0; i < rowCount; i++)
-            {
-                dataGridView.Rows.Add();
-                for (int j = 0; j < colCount; j++)
+                for (int j = 0; j < spearmanMatrix.GetLength(1); j++)
                 {
-                    dataGridView.Rows[i].Cells[j].Value = opinionMatrix[i, j];
+                    Console.Write(spearmanMatrix[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        static double[,] CalculateSpearman(double[,] matrix)
+        {
+            int rowCount = matrix.GetLength(0);
+            int columnCount = matrix.GetLength(1);
+            double[,] spearmanMatrix = new double[columnCount, columnCount];
+
+            for (int i = 0; i < columnCount; i++)
+            {
+                for (int j = 0; j < columnCount; j++)
+                {
+                    double[] column1 = GetColumn(matrix, i);
+                    double[] column2 = GetColumn(matrix, j);
+                    double spearman = CalculateSpearmanCoefficient(column1, column2);
+                    spearmanMatrix[i, j] = spearman;
                 }
             }
 
-            // Вычисляем и выводим матрицу согласования
-            double[] rowSums = new double[rowCount];
+            return spearmanMatrix;
+        }
+
+        static double[] GetColumn(double[,] matrix, int columnIndex)
+        {
+            int rowCount = matrix.GetLength(0);
+            double[] column = new double[rowCount];
             for (int i = 0; i < rowCount; i++)
             {
-                double rowSum = 0;
-                for (int j = 0; j < colCount; j++)
-                {
-                    rowSum += opinionMatrix[i, j];
-                }
-                rowSums[i] = rowSum;
+                column[i] = matrix[i, columnIndex];
             }
+            return column;
+        }
 
-            double totalSum = 0;
-            for (int i = 0; i < rowCount; i++)
+        static double CalculateSpearmanCoefficient(double[] x, double[] y)
+        {
+            double sumSquaredDifferences = 0;
+            int n = x.Length;
+
+            // Rank the values
+            double[] rankX = new double[n];
+            double[] rankY = new double[n];
+
+            Array.Copy(x, rankX, n);
+            Array.Copy(y, rankY, n);
+
+            Array.Sort(rankX);
+            Array.Sort(rankY);
+
+            for (int i = 0; i < n; i++)
             {
-                totalSum += rowSums[i];
+                int indexX = Array.IndexOf(rankX, x[i]) + 1;
+                int indexY = Array.IndexOf(rankY, y[i]) + 1;
+
+                double d = indexX - indexY;
+                sumSquaredDifferences += d * d;
             }
 
-            for (int i = 0; i < rowCount; i++)
-            {
-                for (int j = 0; j < colCount; j++)
-                {
-                    dataGridView.Rows[i].Cells[j].Value = rowSums[i] / totalSum;
-                }
-            }
+            double spearmanCoefficient = 1 - (6 * sumSquaredDifferences) / (n * (n * n - 1));
 
-            int[,] mat = new int[rowCount,colCount];
-            // Сравниваем значения с пороговым значением
-            for (int i = 0; i < rowCount; i++)
-            {
-                for (int j = 0; j < colCount; j++)
-                {
-                    double value = (double)dataGridView.Rows[i].Cells[j].Value;
-                    if (value >= threshold)
-                    {
-                        mat[i,j] = 1;
-                        dataGridView.Rows[i].Cells[j].Value = 1;
-                    }
-                    else
-                    {
-                        mat[i,j] = 0;
-                        dataGridView.Rows[i].Cells[j].Value = 0; 
-                    }
-                }
-            }
-
-            DisplayGraph.PlotGraph(zedGraph, mat);
-
+            return spearmanCoefficient;
         }
     }
 }
