@@ -13,12 +13,29 @@ namespace ExpertsCalculator
     public partial class FormResult : Form
     {
         String nameMetod;
-        object[,] dataArray;
-        public FormResult(object[,] dataArray, String nameMetod)
+        double[,] dataArray;
+        double tHold;
+        public FormResult(double[,] dataArray, String nameMetod, double tHold)
         {
             InitializeComponent();
             this.dataArray = dataArray;
             this.nameMetod = nameMetod;
+            this.tHold = tHold;
+            calculate(nameMetod);
+            
+        }
+
+        private void calculate(string metod)
+        {
+            if (metod == "Согласование") 
+            {
+                Matching.CalculateAndDisplay(dataGridView1, dataArray, tHold);
+            }
+
+            if (metod == "Рассогласование") 
+            {
+               //рассоглдасование
+            }
         }
     }
 }

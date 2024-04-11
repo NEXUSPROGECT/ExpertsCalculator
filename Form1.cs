@@ -7,17 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using static ExpertsCalculator.EditGridEl;
 
 namespace ExpertsCalculator
 {
-    public partial class Form1 : Form
+    public partial class Experts : Form
     {
         int numEx = 1;
         int numTur = 0;
 
 
-        public Form1()
+        public Experts()
         {
             InitializeComponent();
             AddColumn(dataGridView1);
@@ -57,9 +58,13 @@ namespace ExpertsCalculator
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if(comboBox1.SelectedItem == null) {return; }
+
+
             int rowCount = dataGridView1.Rows.Count;
             int columnCount = dataGridView1.Columns.Count;
             object[,] dataArray = new object[rowCount, columnCount];
+            double[,] doubleArray = new double[rowCount, columnCount];
 
             for (int i = 0; i < rowCount; i++)
             {
@@ -69,8 +74,17 @@ namespace ExpertsCalculator
                 }
             }
 
+            // Преобразуем каждый элемент массива object в double
+            for (int i = 0; i < rowCount; i++)
+            {
+                for (int j = 0; j < columnCount; j++)
+                {
+                    // Используем метод Convert.ToDouble для преобразования
+                    doubleArray[i, j] = Convert.ToDouble(dataArray[i, j]);
+                }
+            }
 
-            FormResult formResult = new FormResult(dataArray, comboBox1.SelectedItem.ToString());
+            FormResult formResult = new FormResult(doubleArray, comboBox1.SelectedItem.ToString(), Convert.ToDouble(txtTreshHold.Text));
             formResult.Show();
         }
     }

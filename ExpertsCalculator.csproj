@@ -59,6 +59,7 @@
     <Compile Include="FormResult.Designer.cs">
       <DependentUpon>FormResult.cs</DependentUpon>
     </Compile>
+    <Compile Include="Matching.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

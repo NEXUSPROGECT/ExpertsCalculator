@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ExpertsCalculator
 {
-    partial class Form1
+    partial class Experts
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -32,7 +32,7 @@ namespace ExpertsCalculator
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Experts));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnAddRow = new System.Windows.Forms.Button();
@@ -48,10 +48,14 @@ namespace ExpertsCalculator
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTreshHold = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -76,8 +80,8 @@ namespace ExpertsCalculator
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.Items.AddRange(new object[] {
-            "Способ 1",
-            "Способ 2"});
+            "Согласование",
+            "Рассогласование"});
             this.comboBox1.Location = new System.Drawing.Point(30, 30);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(122, 24);
@@ -116,7 +120,7 @@ namespace ExpertsCalculator
             this.button3.BackColor = System.Drawing.Color.DarkGray;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(34, 309);
+            this.button3.Location = new System.Drawing.Point(34, 329);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(122, 24);
             this.button3.TabIndex = 4;
@@ -216,7 +220,7 @@ namespace ExpertsCalculator
             this.panel2.Controls.Add(this.btnAddRow);
             this.panel2.Controls.Add(this.lbNumTur);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(3, 106);
+            this.panel2.Location = new System.Drawing.Point(3, 86);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(180, 77);
             this.panel2.TabIndex = 14;
@@ -226,23 +230,51 @@ namespace ExpertsCalculator
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.comboBox1);
-            this.panel3.Location = new System.Drawing.Point(3, 212);
+            this.panel3.Location = new System.Drawing.Point(3, 169);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(180, 77);
             this.panel3.TabIndex = 15;
             // 
-            // Form1
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.txtTreshHold);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Location = new System.Drawing.Point(3, 252);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(180, 71);
+            this.panel4.TabIndex = 16;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(35, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Пороговое значение";
+            // 
+            // txtTreshHold
+            // 
+            this.txtTreshHold.BackColor = System.Drawing.Color.Gray;
+            this.txtTreshHold.Location = new System.Drawing.Point(28, 30);
+            this.txtTreshHold.Name = "txtTreshHold";
+            this.txtTreshHold.Size = new System.Drawing.Size(122, 20);
+            this.txtTreshHold.TabIndex = 10;
+            // 
+            // Experts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(542, 356);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Form1";
+            this.Name = "Experts";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -251,6 +283,8 @@ namespace ExpertsCalculator
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -272,6 +306,9 @@ namespace ExpertsCalculator
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
+        private Panel panel4;
+        private TextBox txtTreshHold;
+        private System.Windows.Forms.Label label4;
     }
 }
 
