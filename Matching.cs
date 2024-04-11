@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZedGraph;
 
 namespace ExpertsCalculator
 {
     internal class Matching
     {
-        public static void CalculateAndDisplay(DataGridView dataGridView, double[,] opinionMatrix, double threshold)
+        public static void CalculateAndDisplay(DataGridView dataGridView, double[,] opinionMatrix, double threshold, ZedGraphControl zedGraph)
         {
             int rowCount = opinionMatrix.GetLength(0);
             int colCount = opinionMatrix.GetLength(1);
@@ -60,6 +62,7 @@ namespace ExpertsCalculator
                 }
             }
 
+            int[,] mat = new int[rowCount,colCount];
             // Сравниваем значения с пороговым значением
             for (int i = 0; i < rowCount; i++)
             {
@@ -68,20 +71,19 @@ namespace ExpertsCalculator
                     double value = (double)dataGridView.Rows[i].Cells[j].Value;
                     if (value >= threshold)
                     {
-                        // Применяем какую-то логику для значения, которое превышает порог
-                        // Например, изменяем цвет ячейки или что-то еще
-                        //dataGridView.Rows[i].Cells[j].Style.BackColor = System.Drawing.Color.Green;
+                        mat[i,j] = 1;
                         dataGridView.Rows[i].Cells[j].Value = 1;
                     }
                     else
                     {
-                        dataGridView.Rows[i].Cells[j].Value = 0;
-                        // Применяем логику для значения, которое не превышает порог
-                        // Например, изменяем цвет ячейки или что-то еще
-                        //dataGridView.Rows[i].Cells[j].Style.BackColor = System.Drawing.Color.Red;
+                        mat[i,j] = 0;
+                        dataGridView.Rows[i].Cells[j].Value = 0; 
                     }
                 }
             }
+
+            DisplayGraph.PlotGraph(zedGraph, mat);
+
         }
     }
 }

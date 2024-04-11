@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZedGraph;
 
 namespace ExpertsCalculator
 {
@@ -29,7 +30,7 @@ namespace ExpertsCalculator
         {
             if (metod == "Согласование") 
             {
-                Matching.CalculateAndDisplay(dataGridView1, dataArray, tHold);
+                Matching.CalculateAndDisplay(dataGridView1, dataArray, tHold, zedGraphControl1);
             }
 
             if (metod == "Рассогласование") 
