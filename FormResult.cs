@@ -35,7 +35,7 @@ namespace ExpertsCalculator
 
             if (metod == "Рассогласование") 
             {
-               //рассоглдасование
+                Disagreement.CalculateDisagreement(dataArray, dataGridView1, tHold, pictureBox1);
             }
         }
     }
