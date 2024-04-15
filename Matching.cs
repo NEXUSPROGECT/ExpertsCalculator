@@ -11,7 +11,7 @@ namespace ExpertsCalculator
 {
     internal class Matching
     {
-        public static void MainCalculate(double[,] matrix, DataGridView dataGridView, double tHold, ZedGraphControl zedGraphControl)
+        public static void MainCalculate(double[,] matrix, DataGridView dataGridView, double tHold, PictureBox picturebox)
         {
 
             int[,] diGraf = new int[matrix.GetLength(1), matrix.GetLength(1)];
@@ -60,7 +60,9 @@ namespace ExpertsCalculator
                     }
                 }
             }
-            DisplayGraph.PlotGraph(zedGraphControl, diGraf);
+
+
+            DisplayGraph.DrawDirectedGraph(diGraf, picturebox);
         }
 
         static double[,] CalculateSpearman(double[,] matrix)

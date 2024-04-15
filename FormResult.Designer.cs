@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -43,22 +43,14 @@
             this.dataGridView1.Size = new System.Drawing.Size(410, 350);
             this.dataGridView1.TabIndex = 0;
             // 
-            // zedGraphControl1
+            // pictureBox1
             // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(433, 2);
-            this.zedGraphControl1.MaximumSize = new System.Drawing.Size(460, 350);
-            this.zedGraphControl1.MinimumSize = new System.Drawing.Size(460, 350);
-            this.zedGraphControl1.Name = "zedGraphControl1";
-            this.zedGraphControl1.ScrollGrace = 0D;
-            this.zedGraphControl1.ScrollMaxX = 0D;
-            this.zedGraphControl1.ScrollMaxY = 0D;
-            this.zedGraphControl1.ScrollMaxY2 = 0D;
-            this.zedGraphControl1.ScrollMinX = 0D;
-            this.zedGraphControl1.ScrollMinY = 0D;
-            this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(460, 350);
-            this.zedGraphControl1.TabIndex = 1;
-            this.zedGraphControl1.UseExtendedPrintDialog = true;
+            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox1.Location = new System.Drawing.Point(418, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(464, 327);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // FormResult
             // 
@@ -66,11 +58,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(894, 351);
-            this.Controls.Add(this.zedGraphControl1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormResult";
             this.Text = "FormResult";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -78,6 +71,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private ZedGraph.ZedGraphControl zedGraphControl1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

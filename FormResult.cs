@@ -30,7 +30,7 @@ namespace ExpertsCalculator
         {
             if (metod == "Согласование") 
             {
-                Matching.MainCalculate(dataArray, dataGridView1, tHold, zedGraphControl1);
+                Matching.MainCalculate(dataArray, dataGridView1, tHold, pictureBox1);
             }
 
             if (metod == "Рассогласование") 
